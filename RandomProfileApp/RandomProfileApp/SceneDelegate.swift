@@ -18,7 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		
 		window = UIWindow(windowScene: windowScene)
 		
-		let profileViewController = ProfileViewController()
+		let viewModel = ProfileViewModel()
+		
+		let profileViewController = ProfileViewController(viewModel: viewModel)
 		let navigationController = UINavigationController(rootViewController: profileViewController)
 		navigationController.modalPresentationStyle = .fullScreen
 
