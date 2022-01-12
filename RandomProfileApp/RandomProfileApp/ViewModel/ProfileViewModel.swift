@@ -33,18 +33,24 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 		let request = session.dataTask(with: url) { [weak self] (data, response, error) in
 			
 			guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-				self?.updateUserData?(.failure(ViewData.UserData(Data: nil, error: true)))
+				DispatchQueue.main.async { [weak self] in
+					self?.updateUserData?(.failure(ViewData.UserData(Data: nil, error: true)))
+				}
 				print("bad response")
 				return
 			}
 			
 			guard let data = data else {
-				self?.updateUserData?(.failure(ViewData.UserData(Data: nil, error: true)))
+				DispatchQueue.main.async { [weak self] in
+					self?.updateUserData?(.failure(ViewData.UserData(Data: nil, error: true)))
+				}
 				print(error.debugDescription)
 				return
 			}
 			
-			self?.updateUserData?(.success(ViewData.UserData(Data: data, error: false)))
+			DispatchQueue.main.async { [weak self] in
+				self?.updateUserData?(.success(ViewData.UserData(Data: data, error: false)))
+			}
 		}
 		request.resume()
 	}
