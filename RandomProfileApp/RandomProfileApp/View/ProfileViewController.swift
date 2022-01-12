@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+	private var viewModel: ProfileViewModelProtocol!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .blue
