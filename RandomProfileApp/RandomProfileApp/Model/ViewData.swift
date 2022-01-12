@@ -27,15 +27,12 @@ enum ViewData {
 		var loadingError: Bool
 		
 		init(Data: Data?, error: Bool) {
+
 			loadingError = error
+			if (loadingError) {
+				errorMessage = "Can not get User Data"
+			}
 			if let data = Data {
-				pictureLink = nil
-				gender = nil
-				name = nil
-				location = nil
-				email = nil
-				age = nil
-				
 				let result = _getResultDictionary(data: data)
 				if (result != nil) {
 					_setProperties(results: result!)
@@ -43,7 +40,6 @@ enum ViewData {
 					loadingError = true
 					errorMessage = "Can not get User Data"
 				}
-				
 			} else {
 				pictureLink = nil
 				gender = nil
@@ -55,6 +51,7 @@ enum ViewData {
 		}
 		
 		private mutating func _getResultDictionary(data: Data) -> [String: Any]? {
+
 			var jsonData: [String: Any]?
 			do {
 				jsonData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -82,7 +79,7 @@ enum ViewData {
 		}
 		
 		private mutating func _setProperties(results: [String: Any]) {
-			print(results)
+
 			_getEmail(results: results)
 			print(" Email \(email!)")
 			_getLocation(results: results)

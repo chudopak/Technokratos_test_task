@@ -27,7 +27,6 @@ class ProfileViewController: UIViewController {
 		viewModel.updateUserData = { viewData in
 			print("ViewData")
 		}
-		// Do any additional setup after loading the view.
 	}
 
 }

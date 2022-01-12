@@ -25,6 +25,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 	
 	public func fetchUserData() {
 		guard let url = URL(string: api) else {
+			updateUserData?(.failure(ViewData.UserData(Data: nil, error: true)))
 			print("Can't create url")
 			return
 		}
@@ -32,11 +33,13 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 		let request = session.dataTask(with: url) { [weak self] (data, response, error) in
 			
 			guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+				self?.updateUserData?(.failure(ViewData.UserData(Data: nil, error: true)))
 				print("bad response")
 				return
 			}
 			
 			guard let data = data else {
+				self?.updateUserData?(.failure(ViewData.UserData(Data: nil, error: true)))
 				print(error.debugDescription)
 				return
 			}
@@ -49,6 +52,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 	private func _setURLSessionConfiguration() -> URLSessionConfiguration {
 		let configuration = URLSessionConfiguration.default
 		configuration.waitsForConnectivity = true
+		configuration.timeoutIntervalForResource = 60
 		return (configuration)
 	}
 }
