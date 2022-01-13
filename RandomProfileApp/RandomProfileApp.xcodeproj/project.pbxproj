@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D1B7AE5279015CF004961E5 /* ElementsSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1B7AE4279015CF004961E5 /* ElementsSizes.swift */; };
+		7D1B7AE72790531A004961E5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1B7AE62790531A004961E5 /* Colors.swift */; };
 		7D6BF7D9278ED8CB004F547F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6BF7D8278ED8CB004F547F /* AppDelegate.swift */; };
 		7D6BF7DB278ED8CB004F547F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6BF7DA278ED8CB004F547F /* SceneDelegate.swift */; };
 		7D6BF7DD278ED8CB004F547F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6BF7DC278ED8CB004F547F /* ProfileViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		7D1B7AE4279015CF004961E5 /* ElementsSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsSizes.swift; sourceTree = "<group>"; };
+		7D1B7AE62790531A004961E5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		7D6BF7D5278ED8CB004F547F /* RandomProfileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomProfileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D6BF7D8278ED8CB004F547F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D6BF7DA278ED8CB004F547F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +75,6 @@
 				7D6BF7F2278F1544004F547F /* ViewModel */,
 				7D6BF7D8278ED8CB004F547F /* AppDelegate.swift */,
 				7D6BF7F3278F3A78004F547F /* API.swift */,
-				7D1B7AE4279015CF004961E5 /* ElementsSizes.swift */,
 				7D6BF7F5278F6D7C004F547F /* UIKitClassesExtensions */,
 				7D6BF7DA278ED8CB004F547F /* SceneDelegate.swift */,
 				7D6BF7E1278ED8CC004F547F /* Assets.xcassets */,
@@ -86,9 +87,11 @@
 		7D6BF7EC278EDAD8004F547F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7D1B7AE4279015CF004961E5 /* ElementsSizes.swift */,
 				7D6BF7DC278ED8CB004F547F /* ProfileViewController.swift */,
 				7DBDD2B8278F752000B26FCB /* ProfileView.swift */,
 				7DBDD2BA278F755400B26FCB /* ProfileView+Extension.swift */,
+				7D1B7AE62790531A004961E5 /* Colors.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DBDD2B9278F752000B26FCB /* ProfileView.swift in Sources */,
+				7D1B7AE72790531A004961E5 /* Colors.swift in Sources */,
 				7D1B7AE5279015CF004961E5 /* ElementsSizes.swift in Sources */,
 				7D6BF7DD278ED8CB004F547F /* ProfileViewController.swift in Sources */,
 				7D6BF7D9278ED8CB004F547F /* AppDelegate.swift in Sources */,

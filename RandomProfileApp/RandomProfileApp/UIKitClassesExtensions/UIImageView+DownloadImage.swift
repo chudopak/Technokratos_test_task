@@ -17,6 +17,10 @@ extension UIImageView {
 				let data = data, error == nil,
 				let image = UIImage(data: data)
 			else {
+				let image = UIImage(systemName: "questionmark.circle")
+				DispatchQueue.main.async() { [weak self] in
+					self?.image = image
+				}
 				print("Error - can't fetch profile image")
 				return
 			}

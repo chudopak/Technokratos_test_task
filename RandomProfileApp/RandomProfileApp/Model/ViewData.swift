@@ -21,24 +21,15 @@ enum ViewData {
 		var location: String?
 		var email: String?
 		var age: String?
-
-		var errorMessage = ""
-		
-		var loadingError: Bool
 		
 		init(Data: Data?, error: Bool) {
 
-			loadingError = error
-			if (loadingError) {
-				errorMessage = "Can not get User Data"
-			}
 			if let data = Data {
 				let result = _getResultDictionary(data: data)
 				if (result != nil) {
 					_setProperties(results: result!)
 				} else {
-					loadingError = true
-					errorMessage = "Can not get User Data"
+					_setPropertiesErrorCase()
 				}
 			} else {
 				pictureLink = nil
@@ -57,7 +48,6 @@ enum ViewData {
 				jsonData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
 			} catch {
 				print("JSON ERROR \(error)")
-				loadingError = true
 				return (nil)
 			}
 			guard let jsonUnwrapedData = jsonData else {
@@ -66,13 +56,11 @@ enum ViewData {
 			
 			guard let resultArray = jsonUnwrapedData["results"] as? [Any] else {
 				print("Can not get result array")
-				loadingError = true
 				return (nil)
 			}
 			
 			guard let resultDictionary = resultArray[0] as? [String: Any] else {
 				print("Can not get result dictionary")
-				loadingError = true
 				return (nil)
 			}
 			return (resultDictionary)
@@ -81,17 +69,21 @@ enum ViewData {
 		private mutating func _setProperties(results: [String: Any]) {
 
 			_getEmail(results: results)
-			print(" Email \(email!)")
 			_getLocation(results: results)
-			print("Location \(location!)")
 			_getAge(results: results)
-			print("Age \(age!)")
 			_getName(results: results)
-			print("Name \(name!)")
 			_getGender(results: results)
-			print("Gender \(gender!)")
 			_getPictureLink(results: results)
-			print("Link \(pictureLink!)")
+		}
+		
+		private mutating func _setPropertiesErrorCase() {
+
+			pictureLink = nil
+			gender = "Error"
+			name = "Error"
+			location = "Error"
+			email = "Error"
+			age = "Error"
 		}
 		
 		private mutating func _getEmail(results: [String: Any]) {
