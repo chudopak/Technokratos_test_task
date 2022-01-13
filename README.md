@@ -1,1 +1,3 @@
-# Technokratos_test_task
+### Сетевой слой - URLSessions
+
+### Архитектура - MVVM
