@@ -25,6 +25,7 @@ class ProfileViewController: UIViewController {
 		super.viewDidLoad()
 		view.backgroundColor = .blue
 		_createProfileView()
+		_setRefreshBarButton()
 		viewModel.fetchUserData()
 		viewModel.updateUserData = { [weak self] viewData in
 			self?.profileView.userData = viewData
@@ -42,6 +43,17 @@ class ProfileViewController: UIViewController {
 			profileView.topAnchor.constraint(equalTo: view.topAnchor),
 			profileView.heightAnchor.constraint(equalToConstant: view.bounds.size.height * 0.6)
 		])
+	}
+	
+	private func _setRefreshBarButton() {
+		let barButton = UIBarButtonItem(barButtonSystemItem: .refresh,
+										target: self,
+										action:  #selector(_loadNewProfile))
+		navigationItem.rightBarButtonItem = barButton
+	}
+	
+	@objc private func _loadNewProfile() {
+		viewModel.fetchUserData()
 	}
 }
 

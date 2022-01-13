@@ -15,27 +15,39 @@ class ProfileView: UIView {
 		}
 	}
 	
-	lazy var profilePicture = makeImageView()
+	lazy var profilePictureView = makeViewForProfilePicture()
+	lazy var profilePicture = makeProfilePictureImageView(profilePictureView: profilePictureView)
+	
+	lazy var activityIndicator = makeActivityIndicator()
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		
 		switch userData {
-		case .initialisation:
-			break
-		case .loading(_):
-			break
+		case .loading(_), .initialisation:
+			_updateView(userData: nil, isHidden: true)
 		case .success(let success):
-			_update(userData: success, isHidden: false)
+			_updateView(userData: success, isHidden: false)
 		case .failure(_):
 			break
 		}
 	}
 	
-	private func _update(userData: ViewData.UserData?, isHidden: Bool) {
+	private func _updateView(userData: ViewData.UserData?, isHidden: Bool) {
 		if let userData = userData {
+			activityIndicator.stopAnimating()
+			activityIndicator.isHidden = true
+
 			let pictureURL = URL(string: userData.pictureLink!)
 			profilePicture.download(from: pictureURL!)
+			profilePicture.isHidden = false
+		} else {
+			if (isHidden) {
+				profilePicture.isHidden = true
+				
+				activityIndicator.isHidden = false
+				activityIndicator.startAnimating()
+			}
 		}
 	}
 }

@@ -26,7 +26,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 	public func fetchUserData() {
 		guard let url = URL(string: api) else {
 			updateUserData?(.failure(ViewData.UserData(Data: nil, error: true)))
-			print("Can't create url")
+			print("Error - Can't create url in view model")
 			return
 		}
 		updateUserData?(.loading(ViewData.UserData(Data: nil, error: false)))
@@ -36,7 +36,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
 				DispatchQueue.main.async { [weak self] in
 					self?.updateUserData?(.failure(ViewData.UserData(Data: nil, error: true)))
 				}
-				print("bad response")
+				print("Error - bad response in view model")
 				return
 			}
 			
